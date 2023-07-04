@@ -11,6 +11,7 @@
 	<groupId>ar.edu.unju.fi</groupId>
 	<artifactId>tp2_Grupo22</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>tp2_Grupo22</name>
 	<description>Demo html</description>
 	<properties>
@@ -72,6 +73,12 @@
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>8.0.33</version>
 		</dependency>
+		<dependency>
+    <groupId>org.apache.tomcat.embed</groupId>
+    <artifactId>tomcat-embed-core</artifactId>
+    <version>10.1.10</version>
+    <scope>provided</scope>
+</dependency>
 
 	</dependencies>
 	
@@ -82,24 +89,13 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			 <plugin>
-                  <groupId>org.apache.tomcat.maven</groupId>
-                  <artifactId>tomcat-maven-plugin</artifactId>
-                    <version>10.1.10</version>
-             </plugin>
              <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <configuration>
-                          <classifier>exec</classifier>
-                    </configuration>
-                    <executions>
-                        <execution>
-                               <goals>
-                                 <goal>repackage</goal>
-                              </goals>
-                        </execution>
-                     </executions>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.9.3</version>
+            <configuration>
+                <failOnMissingWebXml>false</failOnMissingWebXml>
+            </configuration>
         </plugin>
 		</plugins>
 	</build>
