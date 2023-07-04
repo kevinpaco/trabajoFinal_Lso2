@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Consejos para la salud</title>
+<link rel="stylesheet" th:href="@{../css/estilos.css}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+	crossorigin="anonymous">
+</head>
+
+<body class="consejos_body">
+	|
+	<div class=".container">
+		<div class="row">
+			<header th:replace="~{layouts/header :: header}"></header>
+		</div>
+
+		<div class=".row">
+			<article class="consejos_article">
+				<p class="item_salud">
+					<b> ARTICULOS PARA LA SALUD DE TUS MASCOTAS </b>
+				</p>
+				<br> <a th:href="@{/consejos/nuevo}" class="cons_button">Agregar
+					Consejos</a>
+				<div class="row">
+					<section class="gatos">
+						<p>
+							<b><i>Para tus GATOS</i></b>
+						</p>
+						<br> <img th:src="@{../images/gatosconsejos.jpg}"
+							title="Consejos de gatos" alt="Consejos de gatos"><br>
+						<div class="col-md-12">
+							<div class="table-responsive-sm mb-3">
+								<div class="container justify-content-center">
+									<table class="table table-striped">
+										<tr>
+											<th>Links</th>
+											<th>Acciones</th>
+										</tr>
+										<tr class="gatos-item" th:each="cons: ${consejos}"
+											th:if="${cons.categoria} == 'Gatos'">
+											<td class="th"><a th:href="${cons.link}"
+												th:text="${cons.descripcion}"> </a></td>
+											<td><a class="cons_button"
+												th:href="@{/consejos/modificar/}+${cons.id}">Editar</a> <a
+												class="cons_button"
+												th:href="@{/consejos/eliminar/}+${cons.id}">Eliminar</a></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+				<div class="row">
+					<section class="perros">
+						<p>
+							<b><i>Para tus PERROS</i></b>
+						</p>
+						<br> <img th:src="@{../images/perrosconsejos.jpg}"
+							title="Consejos de perros" alt="Consejos de perros"><br>
+						<div class="col-md-12">
+							<div class="table-responsive-sm mb-3">
+								<div class="container justify-content-center">
+									<table class="table table-striped">
+										<tr>
+											<th>Links</th>
+											<th>Acciones</th>
+										</tr>
+										<tr class="perros-item" th:each="cons: ${consejos}"
+											th:if="${cons.categoria} == 'Perros'">
+											<td class="th"><a th:href="${cons.link}"
+												th:text="${cons.descripcion}"> </a></td>
+											<td><a class="cons_button"
+												th:href="@{/consejos/modificar/}+${cons.id}">Editar</a> <a
+												class="cons_button"
+												th:href="@{/consejos/eliminar/}+${cons.id}">Eliminar</a></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+				<div class="row">
+					<section class="general">
+						<p>
+							<b><i>EN GENERAL</i></b>
+						</p>
+						<br> <img th:src="@{../images/mascotasconsejos.jpg}"
+							title="Consejos de mascotas" alt="Consejos de mascotas"><br>
+						<div class="col-md-12">
+							<div class="table-responsive-sm mb-3">
+								<div class="container justify-content-center">
+									<table class="table table-striped">
+										<tr>
+											<th>Links</th>
+											<th>Acciones</th>
+										</tr>
+										<tr class="general-item" th:each="cons: ${consejos}"
+											th:if="${cons.categoria} == 'General'">
+											<td class="th"><a th:href="${cons.link}"
+												th:text="${cons.descripcion}"> </a></td>
+											<td class="justify-content-center"><a
+												class="cons_button"
+												th:href="@{/consejos/modificar/}+${cons.id}">Editar</a> <a
+												class="cons_button"
+												th:href="@{/consejos/eliminar/}+${cons.id}">Eliminar</a></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</article>
+		</div>
+		<div class="row">
+			<footer th:replace="~{layouts/footer :: footer}"></footer>
+		</div>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

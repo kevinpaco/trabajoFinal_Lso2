@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>Servicios</title>
+	<link rel="stylesheet" th:href="@{../css/estilos.css}">
+	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+
+
+<body class="body_sucursales-paseo">
+		<header th:replace="~{layouts/header :: header}"></header>	
+			
+		<div class="container">
+		<div class="row">
+            <div class="col-lg-8">
+				<div class="div_paseo">
+					
+				<!-- INICIO DE LA IMPLEMENTACION DEL FORMUALRIO -->
+				
+				<form class="form-inline d-flex mb-5" th:action="@{/servicios/listado}">
+					<div class="form-group mb-2">
+						<label> Filtrar: </label>
+					</div>
+					<div class="form-group mx-sm-3 mb-2">
+					     <select class="form-control" id="diaClave" name="diaClave" required>
+      						<option value="">Seleccione un día</option>
+      						<option value="lunes">Lunes</option>
+      						<option value="martes">Martes</option>
+      						<option value="miércoles">Miércoles</option>
+      						<option value="jueves">Jueves</option>
+      						<option value="viernes">Viernes</option>
+      						<option value="sábado">Sábado</option>
+      						<option value="domingo">Domingo</option>
+    					</select>		
+					</div>
+						<input type="submit" class="btn btn-primary mb-2" value="Buscar">
+							&nbsp;&nbsp;
+						<button type="button" class="btn btn-secondary mb-2" onclick="limpiarFiltro()">Limpiar</button>
+				</form>
+				
+				<div class="table-responsive-sm mb-3">
+	
+				<div class="mb-0">
+					<a class="btn btn-primary" th:href="@{/servicios/nuevo}">Nuevo Servicio</a>
+				</div>
+				
+				<table class="table table-bordered tabla_paseo table-light">
+				  <thead class="thead-dark">
+					<tr>
+						<th>Dia</th>
+						<th>Paseador</th>
+						<th>Horario</th>
+						<th>Categoría</th>
+						<th>Acciones</th>
+					</tr>
+				   </thead>
+				   
+                    <tbody>
+					<tr th:each="serv : ${servicios}">
+						<td th:text="${serv.dia}"></td>
+						<td th:text="${serv.paseador}"></td>
+						<td th:text="${serv.horainicio}+' a '+${serv.horafin}"></td>
+						<td th:text="${serv.categoria}"></td>
+						<td class="d-flex justify-content-center">
+	 						<a class="btn btn-primary btn-sm mx-2" th:href="@{/servicios/modificar/{id}(id=${serv.id})}">Editar</a>
+        					<a class="btn btn-primary btn-sm mx-2" th:href="@{/servicios/eliminar/{id}(id=${serv.id})}">Eliminar</a>
+        				</td>
+        			</tr>
+        			</tbody>
+				</table>
+				</div>
+			</div>
+		</div>
+				
+				
+	<div class="col-lg-4 d-flex flex-column align-items-center my-4">	
+		<aside class="index_aside">
+				<p><b>Contenido relacionado</b></p>
+			<div>
+				<a href="https://www.clarin.com/viste/elegir-mejor-tipo-alimento-perro_0_rM6xA8m02v.html" target="blank">Como elegir el mejor alimento para tu perro (Clarin)</a><br>
+				<img th:src="@{../images\perro.png}">
+			</div>
+			
+			<div><br>
+				<a href="https://www.latercera.com/practico/noticia/consejos-para-escoger-el-mejor-alimento-para-gatos/4WMDLEAJ5BFOVH2UDARSPXDBCE/" target="blank">Como elegir el mejor alimento para tu gato (LaTercera)</a><br>
+				<img th:src="@{../images\gato.png}" >
+			</div>
+		</aside>
+	
+	</div>
+    </div>
+    </div>
+		
+		
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
+	
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	
+	<script type="text/javascript">
+    		function limpiarFiltro() {
+ 			     document.getElementById("diaClave").value = "";
+    			 document.querySelector("form").submit();
+  			  }
+  </script>
+	
+</body>
+</html>

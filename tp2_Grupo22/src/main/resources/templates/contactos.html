@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+    <head>
+        <meta charset="utf-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <title>CONTACTANOS</title>
+		<link rel="stylesheet" th:href="@{css/estilos.css}">
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    </head>
+
+
+
+<body class="container-contacto">
+
+	<header th:replace="~{layouts/header :: header}"></header>
+	
+	
+	 <!-- Cuerpo de la pagina en 2 columnas -->
+	<div class="container">
+	
+  		<div class="text-center">
+			<h1 class="m-5 color-new-contactos">CONTÁCTENOS</h1>
+		</div>
+
+      
+    <div class="row">
+    
+    	<!-- Columna izquierda -->
+        <div class="col-md-6 col-lg-6 text-center color-new-contactos">
+            <p class="h5">3915 Av. General Belgrano, 388-4999999</p>
+            <p class="h5">Lunes a viernes: 9:00 a.m a 8:00 p.m</p>
+            <p class="h5">Sábado a domingo: 9:00 a.m a 12:30 p.m</p>
+
+            <div class="text-center m-4">
+                <img class="img-fluid" th:src="@{images/contacto.png}" alt="Imagen de un perro y un gato">
+            </div>
+
+
+            <div class="text-center mb-5">
+                <a href="https://www.google.com/intl/es-419/gmail/about/" class="text-decoration-none text-dark h5">contactos@mail.com.ar</a>
+                <ul class="list-inline" >
+                    <li class="list-inline-item text-dark"><a class="text-decoration-none h5" href="https://es-la.facebook.com/" target="_blank">Facebook</a></li>
+                    <li class="list-inline-item text-dark"><a class="text-decoration-none h5" href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li class="list-inline-item text-dark"><a class="text-decoration-none h5" href="https://twitter.com/?lang=es" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+		<!-- Columna derecha -->
+        <div class="col-md-6 col-lg-6 mb-5 ">
+            <form th:if="${mensaje eq null}" th:action="@{/contactos}" method="post" th:object="${formContacto}">
+               
+               <div class="form-group mb-3">
+               		<label for="nombre" class="h5 color-new-contactos">Nombre</label>
+                	<input type="text" id="nombre" class="form-control" th:field="*{nombre}" placeholder="Ingrese su nombre" required>
+               		<!-- En caso de error -->
+               		<div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div> 
+               </div>
+           
+          
+                <div class="form-group mb-3">
+                	<label for="email" class="h5 color-new-contactos">Email</label>
+                	<input type="email" id="email" class="form-control" th:field="*{email}" placeholder="Ingrese un email válido" required>
+              		<!-- En caso de error -->
+              		<div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div> 
+              	</div>
+              	
+              	
+              	<div class="form-group mb-3">
+                	<label for="ciudad" class="h5 color-new-contactos">Ciudad</label>
+                	<input type="text" id="ciudad" class="form-control" th:field="*{ciudad}" placeholder="Ingrese su ciudad" required>
+            		<!-- En caso de error -->
+            		<div class="text-danger" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></div> 
+
+            	</div>
+              
+              
+                <div class="form-group mb-3">
+                	<label for="mensaje" class="h5 color-new-contactos">Mensaje</label>
+                	<textarea id="mensaje" th:field="*{mensaje}" class="form-control" rows="5" required></textarea>
+					<!-- En caso de error -->
+					<div class="text-danger" th:if="${#fields.hasErrors('mensaje')}" th:errors="*{mensaje}"></div> 
+				</div>
+				
+				
+				<div class="text-center m-4">
+					<input type="submit" class="btn btn-primary btn-lg text-white" value="Enviar">
+				</div>
+			                
+            </form>
+            
+            
+              <!-- Mensaje de agradecimiento cuando el formulario es recibido-->
+              <div class="text-center color-new-contactos h3">
+              		<p  th:if="${mensaje}" th:text="${mensaje}"></p>
+              </div>
+              
+              
+        </div>
+        </div> 
+    </div>
+ 
+ 	
+ 	 <footer th:replace="~{layouts/footer :: footer}"></footer>
+
+	
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	
+</body>
+</html>
